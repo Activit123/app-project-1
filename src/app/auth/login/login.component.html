@@ -1,0 +1,37 @@
+<div class="container">
+    <!-- Menu -->
+    <div *ngIf="employeeDetails" class="menu">
+      <a *ngIf="employeeDetails.roles.includes('Employee')" routerLink="/employee">Employee</a>
+      <a *ngIf="employeeDetails.roles.includes('OrganizationAdmin')" [routerLink]="['/organization', { empId: employeeDetails.id }]">Organization Admin</a>
+      <a *ngIf="employeeDetails.roles.includes('DepartmentManager')" routerLink="/department">Department Manager</a>
+      <a *ngIf="employeeDetails.roles.includes('ProjectManager')" routerLink="/project">Project Manager</a>
+      <button (click)="logout()">Logout</button>
+    </div>
+  
+    <!-- Login form -->
+    <div class="login" *ngIf="!isLoggedIn">
+      <p >Login</p>
+      <form (ngSubmit)="onSubmit()">
+        <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required>
+        <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+        <button type="submit">Login</button>
+        <button (click)="register()">Register</button>
+      </form>
+      <div *ngIf="message" class="error-message">{{ message }}</div>
+      
+    </div>
+  
+    <!-- Profile details -->
+    <div *ngIf="isLoggedIn && employeeDetails" class="profile-details">
+      <p><strong>Name:</strong> {{ employeeDetails.name }}</p>
+      <p><strong>Email:</strong> {{ employeeDetails.email }}</p>
+      <p><strong>Roles:</strong> {{ employeeDetails.roles.join(', ') }}</p>
+      <p><strong>Organization ID:</strong> {{ employeeDetails.orgId }}</p>
+      <p><strong>Department ID:</strong> {{ employeeDetails.depId }}</p>
+      <p><strong>Skills:</strong></p>
+      <ul>
+        <li *ngFor="let skill of employeeDetails.skills">{{ skill.key }}: {{ skill.value }}</li>
+      </ul>
+    </div>
+  </div>
+  

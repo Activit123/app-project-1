@@ -1,0 +1,91 @@
+/* login.component.css */
+
+form {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input {
+    width: calc(100% - 22px); /* Subtract the padding and border width from 100% */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    width: calc(100% - 22px); /* Subtract the padding and border width from 100% */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+/* Profile Component Styles */
+.profile-details {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details p {
+    margin: 10px 0;
+}
+
+.profile-details strong {
+    font-weight: bold;
+}
+
+.profile-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.profile-details ul li {
+    margin-bottom: 5px;
+}
+
+.profile-details ul li:before {
+    content: '•';
+    margin-right: 5px;
+    color: #ff6b6b;
+}
+
+.profile-details ul li:first-child:before {
+    content: ''; /* Hide bullet for the first item */
+}
+
+/* Menu Styles */
+.menu {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa; /* Light gray background color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Add padding */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333; /* Default text color */
+    font-size: 16px; /* Font size */
+    padding: 8px 15px; /* Add padding to each menu item */
+    margin-bottom: 5px; /* Add margin between menu items */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.menu a:hover {
+    background-color: #007bff; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+}

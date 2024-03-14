@@ -1,0 +1,11 @@
+<div class="container">
+    <!-- Menu -->
+    <div *ngIf="employeeDetails" class="menu">
+      <a *ngIf="employeeDetails.roles.includes('Employee')" [routerLink]="['/profile',employeeDetails.id]">Employee</a>
+      <a *ngIf="employeeDetails.roles.includes('OrganizationAdmin')" [routerLink]="['/admin',employeeDetails.id]">Organization Admin</a>
+      <a *ngIf="employeeDetails.roles.includes('DepartmentManager')" [routerLink]="['/department',employeeDetails.id]">Department Manager</a>
+      <a *ngIf="employeeDetails.roles.includes('ProjectManager')" [routerLink]="['/project',employeeDetails.id]">Project Manager</a>
+      <button (click)="logout()">Logout</button>
+    </div>
+<div><strong>ID:</strong> {{ adminId }}</div>
+<p>Department Management Page</p>

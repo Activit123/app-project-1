@@ -1,0 +1,73 @@
+<div class="container">
+    <!-- Menu -->
+    <div *ngIf="employeeDetails" class="menu">
+        <a *ngIf="employeeDetails.roles.includes('Employee')" [routerLink]="['/profile',employeeDetails.id]">Employee</a>
+        <a *ngIf="employeeDetails.roles.includes('OrganizationAdmin')" [routerLink]="['/admin',employeeDetails.id]">Organization Admin</a>
+        <a *ngIf="employeeDetails.roles.includes('DepartmentManager')" [routerLink]="['/department',employeeDetails.id]">Department Manager</a>
+        <a *ngIf="employeeDetails.roles.includes('ProjectManager')" [routerLink]="['/project',employeeDetails.id]">Project Manager</a>
+      <button (click)="logout()">Logout</button>
+      <div *ngIf="!isAdminRoute" class="profile-container"> </div>
+    </div>
+<div><strong>ID:</strong> {{ adminId }}</div>
+<p>Administration Page</p>
+
+<button (click)="toggleEmployeesList()">Show Employees</button>
+<button (click)="toogleShowTeamRoles()">Show Team Roles</button>
+<button (click)="toogleShowDepartments()">Manage Departments</button>
+<div id="departmentDetailsDiv"  *ngIf="departmentClicked">
+  
+  <h2>Team Roles</h2>
+  <input placeholder="Department Name"  [(ngModel)]="DeptName" name="DeptName">
+  <button (click)="addDepartment(adminId,CustomRole)">Add Role</button>
+  <ul>
+    <li *ngFor="let department of departments">
+      {{ department.name }}
+      {{ department.ManagerId }}
+      <button (click)="showTeamRolePopup(department.id)">Update Department</button>
+    </li>
+  </ul>
+</div>
+<div id="teamRoleDetailsDiv"  *ngIf="teamClicked">
+  
+  <h2>Team Roles</h2>
+  <input placeholder="Custom Role"  [(ngModel)]="CustomRole" name="CustomRole">
+  <button (click)="addCustomROle(adminId,CustomRole)">Add Role</button>
+  <ul>
+    <li *ngFor="let customRole of customRoles">
+      {{ customRole.name }} 
+      <button (click)="showTeamRolePopup(customRole.id)">Update Role</button>
+    </li>
+  </ul>
+</div>
+<div id="employeeDetailsDiv" *ngIf="empClicked">
+  <h2>Employees</h2>
+  <ul>
+    <li *ngFor="let employee of employees">
+      {{ employee.name }} ({{ employee.roles.join(', ') }})
+      <button (click)="showRolePopup(employee)">Manage Roles</button>
+    </li>
+  </ul>
+</div>
+<div *ngIf="showAddrolePopopEnable" class="modal fade show d-block">
+    <div class="modal-dialog modal-dialog-centered">
+        <h2>Add Role for {{ selectedEmployee.name }}</h2>
+        <select #roleSelect [(ngModel)]="selectedRole">
+          <option value="Employee">Employee</option>
+          <option value="Organization Admin">Organization Admin</option>
+          <option value="Department Manager">Department Manager</option>
+          <option value="Project Manager">Project Manager</option>
+        </select>
+        <button (click)="addRole(selectedRole)">Add Role</button>
+        <button (click)="deleteRole(selectedRole)">Delete Role</button>
+</div>
+
+
+<div *ngIf="showAddTeamrolePopopEnable" class="modal fade show d-block">
+    <div class="modal-dialog modal-dialog-centered">
+        
+        <button (click)="addCustomRole()">Add Role</button>
+        
+</div>
+
+  
+    

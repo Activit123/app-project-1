@@ -1,0 +1,48 @@
+<!-- profile.component.html -->
+<div class="container">
+    <!-- Menu -->
+    <div *ngIf="employeeDetails" class="menu">
+      <a *ngIf="employeeDetails.roles.includes('Employee')" [routerLink]="['/profile',employeeDetails.id]">Employee</a>
+      <a *ngIf="employeeDetails.roles.includes('OrganizationAdmin')" [routerLink]="['/admin',employeeDetails.id]">Organization Admin</a>
+      <a *ngIf="employeeDetails.roles.includes('DepartmentManager')" [routerLink]="['/department',employeeDetails.id]">Department Manager</a>
+      <a *ngIf="employeeDetails.roles.includes('ProjectManager')" [routerLink]="['/project',employeeDetails.id]">Project Manager</a>
+      <button (click)="logout()">Logout</button>
+    
+    </div>
+<div class="profile-container">
+    <h2>Profile</h2>
+    <div class="profile-details" *ngIf="employeeDetails">
+      <div><strong>ID:</strong> {{ employeeDetails.id }}</div>
+      <div><strong>Name:</strong> {{ employeeDetails.name }}</div>
+      <div><strong>Email:</strong> {{ employeeDetails.email }}</div>
+      <div><strong>Organization ID:</strong> {{ employeeDetails.orgId }}</div>
+      <div><strong>Department:</strong> {{ deptName }}</div>
+      <div><strong>Roles:</strong> {{ employeeDetails.roles.join(', ') }}</div>
+      <div><strong>Skills:</strong></div>
+      <ul>
+        <li *ngFor="let skill of employeeDetails.skills">{{ skill.key }}: {{ skill.value }}</li>
+      </ul>
+    </div>
+    <button (click)="viewSkills()">Add Skills</button>
+    <div id="skillsDiv" *ngIf="showSkills">
+      <p>skills</p>
+      <div *ngFor="let skill of skills">
+        <h3>{{ skill.name }}</h3>
+        <p>{{ skill.description }}</p>
+        <p>Author ID: {{ skill.authorID }}</p>
+        <button (click)="showAddSkillPopup(skill)">Add Skill Details</button>
+      </div>
+    </div>
+    
+    <div *ngIf="showAddSkillPopupEnable" class="modal fade show d-block">
+      <div class="modal-dialog modal-dialog-centered">
+      <h2>Add Skill Details for {{ selectedSkill.name }}</h2>
+      <div class=" modal-content popup-content">
+        <input type="text" placeholder="Level" [(ngModel)]="skillLevel">
+        <input type="text" placeholder="Experience (Years)" [(ngModel)]="skillExperience">
+        <button (click)="addSkill()">Add Skill</button>
+      </div>
+      </div>
+    </div>
+    
+  

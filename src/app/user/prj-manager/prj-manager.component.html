@@ -1,0 +1,57 @@
+<div class="container">
+    <!-- Menu -->
+    <div *ngIf="employeeDetails" class="menu">
+      <a *ngIf="employeeDetails.roles.includes('Employee')" [routerLink]="['/profile',employeeDetails.id]">Employee</a>
+      <a *ngIf="employeeDetails.roles.includes('OrganizationAdmin')" [routerLink]="['/admin',employeeDetails.id]">Organization Admin</a>
+      <a *ngIf="employeeDetails.roles.includes('DepartmentManager')" [routerLink]="['/department',employeeDetails.id]">Department Manager</a>
+      <a *ngIf="employeeDetails.roles.includes('ProjectManager')" [routerLink]="['/project',employeeDetails.id]">Project Manager</a>
+      <button (click)="logout()">Logout</button>
+    </div>
+    
+<div><strong>ID:</strong> {{ adminId }}
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="project.name" required>
+    </div>
+    <div>
+      <label for="orgId">Organization ID:</label>
+      <input type="text" id="orgId" name="orgId" [(ngModel)]="project.orgId" required>
+    </div>
+    <div>
+      <label for="prPeriod">Project Period:</label>
+      <input type="text" id="prPeriod" name="prPeriod" [(ngModel)]="project.prPeriod" required>
+    </div>
+    <div>
+      <label for="StartD">Start Date:</label>
+      <input type="text" id="StartD" name="StartD" [(ngModel)]="project.StartD">
+    </div>
+    <div>
+      <label for="EndD">End Date:</label>
+      <input type="text" id="EndD" name="EndD" [(ngModel)]="project.EndD">
+    </div>
+    <div>
+      <label for="PrStatus">Project Status:</label>
+      <input type="text" id="PrStatus" name="PrStatus" [(ngModel)]="project.PrStatus" required>
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="project.description"></textarea>
+    </div>
+    <div>
+      <label for="projectManagerID">Project Manager ID:</label>
+      <input type="text" id="projectManagerID" name="projectManagerID" [(ngModel)]="project.projectManagerID" required>
+    </div>
+    <div>
+      <label for="customRoles">Custom Roles:</label>
+      <input type="text" id="customRoles" name="customRoles" [(ngModel)]="project.customRoles">
+    </div>
+    <div>
+      <label for="skillRequirements">Skill Requirements:</label>
+      <input type="text" id="skillRequirements" name="skillRequirements" [(ngModel)]="project.skillRequirements">
+    </div>
+    <button type="submit">Create Project</button>
+  </form>
+  
+</div>
+<p>Project Manager Page</p>

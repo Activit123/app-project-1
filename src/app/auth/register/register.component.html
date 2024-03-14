@@ -1,0 +1,18 @@
+<!-- organization-signup.component.html -->
+
+<div class="container">
+    <h2>Organization Signup</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSignup()" class="signup-form">
+      <input type="text" formControlName="name" placeholder="Name">
+      <input type="text" formControlName="address" placeholder="Address">
+      <button type="submit">Signup</button>
+      <button (click)="login()">Go to Login Page</button>
+      
+    </form>
+    <!-- Label to display the response message -->
+    
+  </div>
+  
+  
+
+  
